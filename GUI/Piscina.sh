@@ -13,7 +13,8 @@ if [ -d "$ruta_directorio" ]; then
     # ... añade aquí la rutina que deseas ejecutar
     cd $ruta_directorio
     #cd /home/mequonic/Desktop/Piscina
-    git pull
+    #git pull
+    git reset hard
     git checkout main
     cd GUI
     chmod +x $python_file_executable
