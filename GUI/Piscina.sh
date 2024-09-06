@@ -1,6 +1,9 @@
 #!/bin/bash
 directorio_buscado="Piscina"
-ruta_especificada="/home/mequonic/Desktop"
+#ruta_especificada="/home/mequonic/Desktop"
+ruta_especificada="/home/esteban/Desktop"
+python_file_executable="Prueba_piscinas.py"
+
 
 ruta_directorio="$ruta_especificada/$directorio_buscado"
 
@@ -12,7 +15,9 @@ if [ -d "$ruta_directorio" ]; then
     #cd /home/mequonic/Desktop/Piscina
     git pull
     git checkout main
-    python Prueba_piscinas.py
+    cd GUI
+    chmod +x $python_file_executable
+    python $python_file_executable
     read
 
 
