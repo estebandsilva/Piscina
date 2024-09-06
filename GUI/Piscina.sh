@@ -17,7 +17,7 @@ if [ -d "$ruta_directorio" ]; then
     git checkout main
     cd GUI
     chmod +x $python_file_executable
-    python $python_file_executable
+    python3 $python_file_executable
     read
 
 
