@@ -14,7 +14,7 @@ if [ -d "$ruta_directorio" ]; then
     cd $ruta_directorio
     #cd /home/mequonic/Desktop/Piscina
     #git pull
-    git reset hard
+    git reset --hard
     git checkout main
     cd GUI
     chmod +x $python_file_executable
