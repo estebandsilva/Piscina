@@ -1,7 +1,7 @@
 // Include Industrial Shields libraries
 #include <RS485.h>
-
-//// IMPORTANT: check switches configuration
+//TRANSMITER
+//// IMPORTANT: check switches configuration(plc)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 void setup() {
