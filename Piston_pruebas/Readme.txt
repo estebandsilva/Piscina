@@ -1,5 +1,23 @@
 ---- CONFIGURATION OF THE HAT
--All switches(SW1, SW2, SW3) OFF. Because the hat its on the end of the modbus line.
+
+-SW1
+  1. OFF
+  2. ON
+  3. ON
+  4. OFF
+
+-SW2
+  1. OFF
+  2. OFF
+  3. ON
+  4. ON
+
+-SW3 (Automatic send/recive)(multipoint master)
+  1. ON
+  2. OFF
+  3. ON*
+  4. ON*
+ *Can be turned OFF to (send/recive control via GPIO18)
 
 
 ---- CONFIGURATION OF THE PLC
@@ -19,7 +37,10 @@
   7. ON
   8  OFF
 
+
+
 ---- ARDUINO IDE CONFIGURATION OF THE BOARD (ARDUINO ARBOX)
+
 -Dowload the lybrary on idearduino of Industrial shield
 	- Select the Family Board: Arbox Family
 	- Selecte the Model: Ardbox Relay HF + RS 485 or Ardbox Relay HF w/RS 485
