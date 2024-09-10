@@ -1,6 +1,6 @@
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 import time
-
+##
 # Configurar la comunicación Modbus RTU
 client = ModbusClient(
     method='rtu',
