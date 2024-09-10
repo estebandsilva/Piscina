@@ -1,15 +1,14 @@
-from pymodbus.client import ModbusSerialClient  # Nuevo import desde pymodbus.client
+from pymodbus.client import ModbusSerialClient  # Import correcto en pymodbus 2.5+
 import time
 
 # Configuración Modbus RTU
 client = ModbusSerialClient(
-    method='rtu',       # Método de comunicación RTU (para serial)
     port='/dev/serial0',  # Cambia según tu configuración (puede ser /dev/ttyUSB0 si usas un adaptador USB)
-    baudrate=38400,     # Debe coincidir con la configuración del Arduino
-    parity='E',         # 'E' para paridad par (even), 'N' para sin paridad (none)
-    stopbits=1,         # 1 bit de parada
-    bytesize=8,         # Tamaño de byte de 8 bits
-    timeout=1           # Tiempo de espera
+    baudrate=38400,       # Debe coincidir con la configuración del Arduino
+    parity='E',           # 'E' para paridad par (even), 'N' para sin paridad (none)
+    stopbits=1,           # 1 bit de parada
+    bytesize=8,           # Tamaño de byte de 8 bits
+    timeout=1             # Tiempo de espera
 )
 
 # Intentar conectar con el esclavo
@@ -33,7 +32,7 @@ if client.connect():
             slave_id = 31
 
             # Escribir el valor en el registro de retención 0 del esclavo
-            response = client.write_register(0, button_state, unit=slave_id)
+            response = client.write_register(0, button_state, slave=slave_id)  # Cambiar 'unit' a 'slave'
 
             # Verificar si la respuesta fue exitosa
             if response.isError():
