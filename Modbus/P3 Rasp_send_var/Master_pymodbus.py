@@ -1,54 +1,47 @@
-#pip install pymodbus==2.4.0
-import serial
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
-from pymodbus.exceptions import ModbusIOException
+import time
 
-# Configurar el cliente Modbus RTU sobre el puerto serial
-modbus_client = ModbusClient(
+# Configurar la comunicación Modbus RTU
+client = ModbusClient(
     method='rtu',
-    port='/dev/serial0',  # Cambia a /dev/ttyUSB0 si usas un adaptador USB-RS-485
+    port='/dev/serial0',  # Cambia esto según tu configuración (puede ser /dev/ttyUSB0 si usas un adaptador USB)
     baudrate=38400,
-    parity='N',  # Ninguna paridad
+    parity='E',
     stopbits=1,
     bytesize=8,
     timeout=1
 )
 
-# Conectar al dispositivo esclavo (slave)
-connection = modbus_client.connect()
+# Intentar conectar con el esclavo
+connection = client.connect()
+
 if connection:
-    print("Conexión Modbus establecida.")
-else:
-    print("Error al conectar al dispositivo esclavo.")
-    exit()
+    print("Conexión establecida con el esclavo.")
+    try:
+        while True:
+            # Leer entrada del terminal (esperar hasta que el usuario escriba "high" o "low")
+            user_input = input("Escribe 'high' para 1 o 'low' para 0: ").strip().lower()
 
-try:
-    while True:
-        input_data = input("Escribe el número del registro Modbus a leer (o 'exit' para salir): ")
-
-        if input_data.lower() == 'exit':
-            print("Finalizando la transmisión.")
-            break
-
-        # Intentar convertir el input a un número de registro
-        try:
-            register_address = int(input_data)
-        except ValueError:
-            print("Por favor, ingresa un número de registro válido.")
-            continue
-
-        # Leer el valor del registro Modbus
-        try:
-            result = modbus_client.read_holding_registers(register_address, 1, unit=1)
-            if not isinstance(result, ModbusIOException):
-                print(f"Valor del registro {register_address}: {result.registers[0]}")
+            # Convertir la entrada a un valor para enviar
+            if user_input == 'high':
+                button_state = 1
+            elif user_input == 'low':
+                button_state = 0
             else:
-                print(f"Error al leer el registro {register_address}")
-        except Exception as e:
-            print(f"Error durante la lectura: {e}")
+                print("Entrada inválida. Escribe 'high' o 'low'.")
+                continue
 
-except KeyboardInterrupt:
-    print("Transmisión interrumpida por el usuario.")
-finally:
-    modbus_client.close()
-    print("Conexión cerrada.")
+            # Dirección del esclavo Modbus
+            slave_id = 31  # Asegúrate de que coincide con la dirección del esclavo en el Arduino
+
+            # Escribir el valor en el holding register 0 del esclavo
+            client.write_register(0, button_state, unit=slave_id)
+
+            print(f"Valor {button_state} enviado al esclavo {slave_id} en el holding register 0.")
+
+    except KeyboardInterrupt:
+        print("Programa detenido por el usuario.")
+    finally:
+        client.close()
+else:
+    print("No se pudo establecer la conexión con el esclavo.")
