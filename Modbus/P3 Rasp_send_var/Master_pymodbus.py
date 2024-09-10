@@ -37,6 +37,12 @@ if connection:
             # Escribir el valor en el holding register 0 del esclavo
             client.write_register(0, button_state, unit=slave_id)
 
+            response = client.write_register(0, button_state, unit=slave_id)
+            if response.isError():
+                print(f"Error en la escritura: {response}")
+            else:
+                print(f"Valor {button_state} enviado correctamente.")
+
             print(f"Valor {button_state} enviado al esclavo {slave_id} en el holding register 0.")
 
     except KeyboardInterrupt:
