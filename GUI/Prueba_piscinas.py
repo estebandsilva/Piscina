@@ -79,7 +79,9 @@ class MainWindow(QMainWindow):
         self.ui.closeRightMenuBtn.clicked.connect(lambda: self.ui.rightMenuContainer.collapseMenu())
         self.ui.closeRightMenuBtn.clicked.connect(lambda: self.ui.rightMenuContainer.collapseMenu())
 
+################Prueba Button
 
+#######################
 
         ### BOTONES DEL PANEL
         self.ui.panel_1c.clicked.connect(lambda:self.ui.label_4.raise_())
