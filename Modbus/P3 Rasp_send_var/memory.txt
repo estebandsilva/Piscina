@@ -1,0 +1,3 @@
+Rasp Master send V-1 a high though modbus
+    Both are on parity 'N' . 'E' Dos not work
+

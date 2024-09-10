@@ -5,7 +5,7 @@ import time
 client = ModbusSerialClient(
     port='/dev/serial0',  # Cambia según tu configuración (puede ser /dev/ttyUSB0 si usas un adaptador USB)
     baudrate=38400,       # Debe coincidir con la configuración del Arduino
-    parity='E',           # 'E' para paridad par (even), 'N' para sin paridad (none)
+    parity='N',           # 'E' para paridad par (even), 'N' para sin paridad (none)
     stopbits=1,           # 1 bit de parada
     bytesize=8,           # Tamaño de byte de 8 bits
     timeout=1             # Tiempo de espera
