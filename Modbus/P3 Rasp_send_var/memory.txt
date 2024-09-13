@@ -1,3 +1,15 @@
 Rasp Master send V-1 a high though modbus
     Both are on parity 'N' . 'E' Does not work
 
+---------- ERRORES
+digitalWrite con la libreria modbus no funciona bien.
+Si funcioana con un print
+Si funciona sin la libreria modbus
+
+
+- Arduino no responde para entablar comunicación con modbus.
+Puede ser por el DE/RE automatico del PLC no este funcionando bien.
+parace que el Arduino no se ponen de acuerdo en el momento de escuchar o tranmitir
+En la raspberry lo tiene automático.
+Sin el protocolo modbus funciona, (P1 y P2 funcionan bien) reciben y transmiten señales.
+
