@@ -48,10 +48,21 @@ void loop() {
 
   // Realizar una acción con base en el valor
   if (value == 1) {
-    Serial.println("Acción: LED encendido.");
+    Serial.println("RELE 1 ACTIVADO PARPADEANDO");
+    digitalWrite(R1,HIGH);
+    delay(1000);
+    digitalWrite(R1,LOW);
+  } else if (value == 2) {
+    Serial.println(" RELE 2 ACTIVADO FIJO");
+    digitalWrite(R2,HIGH);
+  } else if (value=0) {
+    Serial.println("PARO");
+    digitalWrite(R1,LOW);
+    digitalWrite(R2,LOW);
   } else {
-    Serial.println("Acción: LED apagado.");
+    Serial.println("Unknown command");
   }
+
 
   delay(1000);  // Pausa de 1 segundo
 }

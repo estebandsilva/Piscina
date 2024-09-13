@@ -17,15 +17,17 @@ if client.connect():
     try:
         while True:
             # Leer entrada del terminal (esperar hasta que el usuario escriba "high" o "low")
-            user_input = input("Escribe 'high' para 1 o 'low' para 0: ").strip().lower()
+            user_input = input("Escribe ('0', '1', '2') para (R1 o R2 o Paro) : ").strip().lower()
 
             # Convertir la entrada a un valor para enviar
-            if user_input == 'high':
-                button_state = 1
-            elif user_input == 'low':
+            if user_input == '0':
                 button_state = 0
+            elif user_input == '1':
+                button_state = 1
+            elif user_input == '2':
+                button_state = 2
             else:
-                print("Entrada inválida. Escribe 'high' o 'low'.")
+                print("Entrada inválida. Escribe '0' o '1' o '2'.")
                 continue
 
             # Dirección del esclavo Modbus (debe coincidir con el ID del Arduino)
